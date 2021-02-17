@@ -1,0 +1,41 @@
+type Query {
+  users: [User!]!
+  userCount: Int!
+  user(_id: ID!): User
+}
+
+type Mutation {
+  createUser(
+    name: String!
+    email: String!
+    password: String!
+    role: UserRole!
+  ): User!
+  editUser(id: ID!, name: String, role: UserRole): User!
+  deleteUser(_id: ID!): User
+}
+
+type Subscription {
+  createdUser: User!
+  countUsers: Int!
+}
+
+type User {
+  _id: ID!
+  name: String!
+  email: String!
+  role: UserRole!
+  createdAt: String!
+}
+
+enum MutationType {
+  CREATE
+  DELETE
+  UPDATE
+}
+
+enum UserRole {
+  ADMIN
+  WRITER
+  VIEWER
+}
